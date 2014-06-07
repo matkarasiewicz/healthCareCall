@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AgentDiagram version="1.1" name="Agent Diagram" embedded="false">
+	<Actor id="96e30638-4c87-4933-b4cd-22e0a2da0903" name="Pacjent" x="135" y="172" width="-1" height="-1">
+		<protocol name="wyslij zgloszenie">
+			<child>43612115-1233-4f0f-94b7-136f24d2017d</child>
+		</protocol>
+	</Actor>
+	<Actor id="ab73d5ae-db83-46db-abb9-796dc03cbd27" name="Personel medyczny" x="335" y="170" width="-1" height="-1">
+		<protocol name="przyjmij zgloszenie">
+			<child>44cbc371-11fd-4ced-986d-5273da7e48f5</child>
+			<bendpoint x="320" y="284"/>
+		</protocol>
+		<protocol name="odrzuc zgloszenie">
+			<child>44cbc371-11fd-4ced-986d-5273da7e48f5</child>
+			<bendpoint x="441" y="281"/>
+		</protocol>
+	</Actor>
+	<Actor id="140819cd-b816-4c2b-b51d-f07f2e362391" name="Monitor" x="597" y="171" width="-1" height="-1">
+		<protocol name="wyswietl stan">
+			<child>3e7b57ec-1d5c-483a-a82e-e25abcc16b36</child>
+		</protocol>
+	</Actor>
+	<Agent id="43612115-1233-4f0f-94b7-136f24d2017d" name="Agent pacjenta" x="90" y="332" width="-1" height="-1">
+		<protocol name="zglos">
+			<child>3e7b57ec-1d5c-483a-a82e-e25abcc16b36</child>
+			<bendpoint x="251" y="492"/>
+		</protocol>
+	</Agent>
+	<Agent id="44cbc371-11fd-4ced-986d-5273da7e48f5" name="Agent personelu medycznego" x="302" y="327" width="-1" height="-1">
+		<protocol name="odpowiedz na zapytanie">
+			<child>3e7b57ec-1d5c-483a-a82e-e25abcc16b36</child>
+		</protocol>
+		<protocol name="obsluz">
+			<child>43612115-1233-4f0f-94b7-136f24d2017d</child>
+		</protocol>
+	</Agent>
+	<Agent id="3e7b57ec-1d5c-483a-a82e-e25abcc16b36" name="Agent monitorujacy" x="608" y="434" width="-1" height="-1">
+		<protocol name="sprawdz dostepnosc">
+			<child>44cbc371-11fd-4ced-986d-5273da7e48f5</child>
+			<bendpoint x="392" y="444"/>
+		</protocol>
+		<protocol name="wyslij zapytanie">
+			<child>44cbc371-11fd-4ced-986d-5273da7e48f5</child>
+			<bendpoint x="452" y="421"/>
+		</protocol>
+	</Agent>
+</AgentDiagram>

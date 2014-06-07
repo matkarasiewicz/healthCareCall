@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GoalDiagram version="1.1" name="Goal Diagram" embedded="false">
+	<Goal id="9b1507f8-0792-4562-8cbd-93026ddbfd29" name="Pomoc medyczna" number="0" preference="1.0" x="378" y="98" width="-1" height="-1" definition="" description="" color="No">
+		<and>
+			<child>dd34a5fb-f891-416e-8292-4e0ee854ce6d</child>
+		</and>
+		<and>
+			<child>a1c8cb21-1103-471e-a95d-6e6ea6b80519</child>
+		</and>
+		<and>
+			<child>bc07abf7-249e-4784-ad64-8a2f676910b2</child>
+		</and>
+	</Goal>
+	<Goal id="dd34a5fb-f891-416e-8292-4e0ee854ce6d" name="Zgloszenia o pomoc medyczna" number="1" preference="1.0" x="59" y="204" width="-1" height="-1" definition="" description="" color="No">
+		<and>
+			<child>2bb9bdcd-3019-4b23-aac4-303cc9db1355</child>
+		</and>
+		<triggers name="zglos" min="" max="">
+			<child>a1c8cb21-1103-471e-a95d-6e6ea6b80519</child>
+			<parameter name="typZgloszenia" collection="Collection" type="Type"/>
+		</triggers>
+	</Goal>
+	<Goal id="a1c8cb21-1103-471e-a95d-6e6ea6b80519" name="Obsluga pomocy medycznej" number="2" preference="1.0" x="406" y="202" width="-1" height="-1" definition="" description="" color="No">
+		<and>
+			<child>b1098bf5-f08a-4300-9f71-1ff3ca9cfb51</child>
+		</and>
+		<and>
+			<child>969142d9-17d7-4821-b204-0ae3b46ad71f</child>
+		</and>
+	</Goal>
+	<Goal id="bc07abf7-249e-4784-ad64-8a2f676910b2" name="Monitoruj stan personelu i pacjentow" number="3" preference="1.0" x="688" y="201" width="-1" height="-1" definition="" description="" color="No">
+	</Goal>
+	<Goal id="b1098bf5-f08a-4300-9f71-1ff3ca9cfb51" name="Przyjecie zgloszenia" number="2.1" preference="1.0" x="357" y="323" width="-1" height="-1" definition="" description="" color="No">
+		<triggers name="obsluz" min="" max="">
+			<child>2bb9bdcd-3019-4b23-aac4-303cc9db1355</child>
+		</triggers>
+	</Goal>
+	<Goal id="969142d9-17d7-4821-b204-0ae3b46ad71f" name="Odrzucenie zgloszenia" number="2.2" preference="1.0" x="520" y="321" width="-1" height="-1" definition="" description="" color="No">
+	</Goal>
+	<Goal id="2bb9bdcd-3019-4b23-aac4-303cc9db1355" name="Powiadomienie o stanie zgloszenia" number="1.1" preference="1.0" x="12" y="320" width="-1" height="-1" definition="" description="" color="No">
+	</Goal>
+</GoalDiagram>

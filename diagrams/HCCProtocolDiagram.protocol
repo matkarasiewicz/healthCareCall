@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProtocolDiagram version="1.1" name="Protocol Diagram" embedded="false">
+	<Agent id="d86064e8-929c-481e-9a36-96ed48a8d253" name="Pacjent" x="120" y="20" width="100" height="600">
+		<synchronous name="zglos" x="451" y="120">
+			<child>2637cbb0-c18e-4e15-acdd-6358b505a628</child>
+			<parameter name="typZgloszenia" collection="Collection" type="Type"/>
+		</synchronous>
+	</Agent>
+	<Agent id="2637cbb0-c18e-4e15-acdd-6358b505a628" name="Monitor" x="399" y="20" width="100" height="600">
+		<synchronous name="sprawdzDostepnosc" x="791" y="144">
+			<child>4a241cbd-bc3a-451e-bf2d-691c5d334d05</child>
+		</synchronous>
+		<synchronous name="wyslijZapytanie" x="773" y="194">
+			<child>4a241cbd-bc3a-451e-bf2d-691c5d334d05</child>
+		</synchronous>
+	</Agent>
+	<Agent id="4a241cbd-bc3a-451e-bf2d-691c5d334d05" name="Persone medyczny" x="732" y="20" width="100" height="600">
+		<synchronous name="odpowiedzNaZapytanie" x="456" y="251">
+			<child>2637cbb0-c18e-4e15-acdd-6358b505a628</child>
+		</synchronous>
+		<synchronous name="obsluz" x="176" y="335">
+			<child>d86064e8-929c-481e-9a36-96ed48a8d253</child>
+		</synchronous>
+	</Agent>
+</ProtocolDiagram>
