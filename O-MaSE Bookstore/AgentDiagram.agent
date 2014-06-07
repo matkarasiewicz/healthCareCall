@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AgentDiagram version="1.1" name="Agent Diagram" embedded="false">
+	<Actor id="d86e4dc7-ce70-429f-b088-a8a3cc72df34" name="Kupujacy ksiazke" x="118" y="281" width="-1" height="-1">
+		<protocol name="kup ksiazki">
+			<child>cc042935-c342-4fc3-b140-d83e251a4a2f</child>
+			<bendpoint x="98" y="426"/>
+		</protocol>
+		<protocol name="szukaj sprzedajach">
+			<child>cc042935-c342-4fc3-b140-d83e251a4a2f</child>
+			<bendpoint x="229" y="423"/>
+		</protocol>
+	</Actor>
+	<Actor id="8de5c535-2419-4e37-a663-b102dbc1b323" name="Sprzedawca ksiazki" x="430" y="282" width="-1" height="-1">
+		<protocol name="oferuj ksiazki">
+			<child>3bc2f4be-e30f-407c-996a-f57ba173a245</child>
+			<bendpoint x="428" y="415"/>
+		</protocol>
+		<protocol name="sprzedaj ksiazki">
+			<child>3bc2f4be-e30f-407c-996a-f57ba173a245</child>
+			<bendpoint x="528" y="413"/>
+		</protocol>
+	</Actor>
+	<Agent id="cc042935-c342-4fc3-b140-d83e251a4a2f" name="Kupujacy" x="142" y="477" width="-1" height="-1">
+		<attribute name="sdfg" collection="Collection" type="" initial_value=""/>
+		<attribute name="Attribute1" collection="Collection" type="Type" initial_value=""/>
+		<protocol name="pobierz oferte">
+			<child>3bc2f4be-e30f-407c-996a-f57ba173a245</child>
+		</protocol>
+		<protocol name="kup">
+			<child>3bc2f4be-e30f-407c-996a-f57ba173a245</child>
+		</protocol>
+	</Agent>
+	<Agent id="3bc2f4be-e30f-407c-996a-f57ba173a245" name="Sprzedajacy" x="448" y="484" width="-1" height="-1">
+		<protocol name="podaj oferte">
+			<child>cc042935-c342-4fc3-b140-d83e251a4a2f</child>
+		</protocol>
+		<protocol name="sprzedaj">
+			<child>cc042935-c342-4fc3-b140-d83e251a4a2f</child>
+		</protocol>
+	</Agent>
+</AgentDiagram>

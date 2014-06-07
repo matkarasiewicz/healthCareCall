@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GoalDiagram version="1.1" name="Goal Diagram" embedded="false">
+	<Goal id="b9009471-fd90-4b6d-8767-6508efb17bec" name="Handluj ksiazkami" number="0" preference="1.0" x="245" y="146" width="-1" height="-1" definition="" description="" color="No">
+		<and>
+			<child>ac9c1a27-2dc1-4ef2-983f-97533184483f</child>
+		</and>
+		<and>
+			<child>5dd40424-a871-4025-9a2f-f3a954452603</child>
+		</and>
+	</Goal>
+	<Goal id="7a97ef57-1f0a-4d15-9832-7a108406128f" name="Kup ksiazke" number="3.2" preference="1.0" x="-10" y="396" width="-1" height="-1" definition="" description="" color="No">
+			<parameter name="n" collection="Collection" type="Nazwa ksiazki"/>
+	</Goal>
+	<Goal id="ac9c1a27-2dc1-4ef2-983f-97533184483f" name="Sprzedaj ksiazki" number="2" preference="1.0" x="458" y="281" width="-1" height="-1" definition="" description="" color="No">
+		<and>
+			<child>5592c3cb-aa15-4766-bd5e-1a22c75f2cf2</child>
+		</and>
+		<and>
+			<child>fdcd99f0-2806-4542-bf9a-3e7a265c8a1d</child>
+		</and>
+	</Goal>
+	<Goal id="5592c3cb-aa15-4766-bd5e-1a22c75f2cf2" name="Obsluga zadan ofert" number="2.1" preference="1.0" x="358" y="412" width="-1" height="-1" definition="" description="" color="No">
+	</Goal>
+	<Goal id="fdcd99f0-2806-4542-bf9a-3e7a265c8a1d" name="Obsluga zadan sprzedazy" number="2.2" preference="1.0" x="517" y="412" width="-1" height="-1" definition="" description="" color="No">
+	</Goal>
+	<Goal id="5dd40424-a871-4025-9a2f-f3a954452603" name="Kupuj ksiazki" number="3" preference="1.0" x="95" y="276" width="-1" height="-1" definition="" description="" color="No">
+		<and>
+			<child>ecff8673-8d2a-4bd7-b61a-6d76d6a4cec0</child>
+		</and>
+		<and>
+			<child>7a97ef57-1f0a-4d15-9832-7a108406128f</child>
+		</and>
+	</Goal>
+	<Goal id="ecff8673-8d2a-4bd7-b61a-6d76d6a4cec0" name="Szukaj sprzedajacych" number="3.1" preference="1.0" x="187" y="408" width="-1" height="-1" definition="" description="" color="No">
+		<triggers name="kup" min="" max="">
+			<child>7a97ef57-1f0a-4d15-9832-7a108406128f</child>
+			<parameter name="n" collection="Collection" type="Nazwa ksiazki"/>
+		</triggers>
+	</Goal>
+</GoalDiagram>
