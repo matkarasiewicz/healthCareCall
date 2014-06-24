@@ -1,15 +1,15 @@
 package healthCare;
 
-import java.awt.Point;
 
 import jade.core.Agent;
-import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
-import jade.lang.acl.ACLMessage;
-import jade.lang.acl.MessageTemplate;
+
+import healthCare.PersonnelAgentBehaviours.AcceptHelp;
+import healthCare.PersonnelAgentBehaviours.OfferHelp;
+
 
 public class PersonnelAgent extends Agent {
 
@@ -43,10 +43,20 @@ public class PersonnelAgent extends Agent {
         return roomName;
     }
 
+    public void helpPatient() {
+        long startTime = System.currentTimeMillis();
+        while(System.currentTimeMillis() - startTime < 5000)
+        {
+            this.status = State.BUSY;
+        }
+        
+        this.status = State.FREE;
+    }
+    
     protected void setup() {
 
         initPersonnelAgent();
-        // Tutaj trzeba typ pracownika wyci�gn��, z argumentu mo�e? Albo potem przez formatk�
+        
         System.out.println("Witam! Pracownik " + getAID().getLocalName() + " przyszed� do pracy.");
         initGUI();
         registerServices();
@@ -89,54 +99,6 @@ public class PersonnelAgent extends Agent {
 
     protected void takeDown() {
         myGui.dispose();
-        System.out.println("Pracownik " + getAID().getName() + " opu�ci� prac�.");
+        System.out.println("Pracownik " + getAID().getName() + " opuscil prace.");
     }
-
-// <editor-fold defaultstate="collapsed" desc="Behaviours">
-    private class OfferHelp extends CyclicBehaviour {
-
-        public void action() {
-
-            PersonnelAgent personnelAgent = (PersonnelAgent) myAgent;
-            MessageTemplate mt = MessageTemplate.MatchPerformative(ACLMessage.CFP);
-            ACLMessage msg = personnelAgent.receive(mt);
-            if (msg != null && personnelAgent.getStatus() == PersonnelAgent.State.FREE) {
-                System.out.println("Pacjent z pokoju: " + msg.getOntology() + " " + msg.getContent());
-                ACLMessage reply = msg.createReply();
-                reply.setPerformative(ACLMessage.PROPOSE);
-                reply.setContent(personnelAgent.getRoomName());
-                personnelAgent.send(reply);
-            } else {
-                block();
-            }
-        }
-    }
-
-    private class AcceptHelp extends CyclicBehaviour {
-
-        PersonnelAgent personnelAgent;
-
-        public void action() {
-            personnelAgent = (PersonnelAgent) myAgent;
-            //tylko zlecenia kupna, ktore stanowia akceptacje oferty
-            MessageTemplate mt = MessageTemplate.MatchPerformative(ACLMessage.ACCEPT_PROPOSAL);
-            ACLMessage msg = personnelAgent.receive(mt);
-            if (msg != null) {
-                String room = msg.getContent();
-                ACLMessage reply = msg.createReply();
-                if (personnelAgent.getStatus() == PersonnelAgent.State.FREE) {
-                    personnelAgent.setStatus(PersonnelAgent.State.BUSY);
-                    reply.setPerformative(ACLMessage.INFORM);
-                    System.out.println(personnelAgent.getLocalName() + " pomaga " + msg.getSender().getLocalName() + " w pokoju " + room);
-                } else {
-                    reply.setPerformative(ACLMessage.FAILURE);
-                    reply.setContent("Lekarz jest zajety pomoca innemu pacjentowi");
-                }
-                myAgent.send(reply);
-            } else {
-                block();
-            }
-        }
-    }
-    // </editor-fold>
 }
