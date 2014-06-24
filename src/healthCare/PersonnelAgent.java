@@ -27,16 +27,20 @@ public class PersonnelAgent extends Agent {
     private State status;
     private String roomName;
 
+    public State getStatus() {
+        return status;
+    }
+
+    public void setStatus(State status) {
+        this.status = status;
+    }
+
     public Type getType() {
         return type;
     }
 
     public String getRoomName() {
         return roomName;
-    }
-
-    public State getStatus() {
-        return status;
     }
 
     protected void setup() {
@@ -46,7 +50,8 @@ public class PersonnelAgent extends Agent {
         System.out.println("Witam! Pracownik " + getAID().getLocalName() + " przyszed� do pracy.");
         initGUI();
         registerServices();
-        addBehaviour(new OfferHelpServer());
+        addBehaviour(new OfferHelp());
+        addBehaviour(new AcceptHelp());
 
     }
 
@@ -88,7 +93,7 @@ public class PersonnelAgent extends Agent {
     }
 
 // <editor-fold defaultstate="collapsed" desc="Behaviours">
-    private class OfferHelpServer extends CyclicBehaviour {
+    private class OfferHelp extends CyclicBehaviour {
 
         public void action() {
 
@@ -106,29 +111,32 @@ public class PersonnelAgent extends Agent {
             }
         }
     }
-//    private class AcceptHelpServer extends CyclicBehaviour {
-//
-//        public void action() {
-//            //tylko zlecenia kupna, ktore stanowia akceptacje oferty
-//            MessageTemplate mt = MessageTemplate.MatchPerformative(ACLMessage.ACCEPT_PROPOSAL);
-//            ACLMessage msg = myAgent.receive(mt);
-//            if (msg != null) {
-//                String title = msg.getContent();
-//                ACLMessage reply = msg.createReply();
-//                Integer price = (Integer) catalogue.remove(title);
-//                if (price != null) {
-//                    reply.setPerformative(ACLMessage.INFORM);
-//                    System.out.println(title + " sprzedana agentowi " + msg.getSender().getLocalName());
-//                } else {
-//                    //pozycji nie ma w katalogu, poniewaz w miedzyczasie (juz po zlozeniu oferty) zostala sprzedana innemu agentowi
-//                    reply.setPerformative(ACLMessage.FAILURE);
-//                    reply.setContent("not-available");
-//                }
-//                myAgent.send(reply);
-//            } else {
-//                block();
-//            }
-//        }
-//    }
+
+    private class AcceptHelp extends CyclicBehaviour {
+
+        PersonnelAgent personnelAgent;
+
+        public void action() {
+            personnelAgent = (PersonnelAgent) myAgent;
+            //tylko zlecenia kupna, ktore stanowia akceptacje oferty
+            MessageTemplate mt = MessageTemplate.MatchPerformative(ACLMessage.ACCEPT_PROPOSAL);
+            ACLMessage msg = personnelAgent.receive(mt);
+            if (msg != null) {
+                String room = msg.getContent();
+                ACLMessage reply = msg.createReply();
+                if (personnelAgent.getStatus() == PersonnelAgent.State.FREE) {
+                    personnelAgent.setStatus(PersonnelAgent.State.BUSY);
+                    reply.setPerformative(ACLMessage.INFORM);
+                    System.out.println(personnelAgent.getLocalName() + " pomaga " + msg.getSender().getLocalName() + " w pokoju " + room);
+                } else {
+                    reply.setPerformative(ACLMessage.FAILURE);
+                    reply.setContent("Lekarz jest zajety pomoca innemu pacjentowi");
+                }
+                myAgent.send(reply);
+            } else {
+                block();
+            }
+        }
+    }
     // </editor-fold>
 }

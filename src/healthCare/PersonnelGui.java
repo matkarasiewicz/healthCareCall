@@ -43,6 +43,54 @@ public class PersonnelGui extends JFrame  {
 		
 		getContentPane().add(p, BorderLayout.CENTER);
 		
+//		JButton addButton = new JButton("Melduj");
+//		addButton.addActionListener( new ActionListener() {
+//			public void actionPerformed(ActionEvent ev) {
+//				try {
+//					String helpKind = currentRoomComboBox.getSelectedItem().toString();
+//					
+//					//TODO
+//					//myAgent.sendHelpRequest(helpKind, "");
+//				}
+//				catch (Exception e) {
+//					JOptionPane.showMessageDialog(PersonnelGui.this, "Nieprawid�owe warto�ci. " + e.getMessage(), "B��d", JOptionPane.ERROR_MESSAGE); 
+//				}
+//			}
+//		} );
+//		p = new JPanel();
+//		p.add(addButton);
+		
+		currentStatusLabel = new JLabel();
+		p.add(currentStatusLabel);
+		
+		getContentPane().add(p, BorderLayout.SOUTH);
+		
+		addWindowListener(new	WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				myAgent.doDelete();
+			}
+		} );
+		
+		setResizable(false);
+		
+		
+		updateStatus();
+	}
+        
+        public void displayHealthRequest() {
+		
+		JPanel p = new JPanel();
+		p.setLayout(new GridLayout(2, 2));
+		
+		String[] list = HospitalMap.getRooms();
+		
+		p.add(new JLabel("Pokoj"));
+		currentRoomComboBox = new JComboBox(list);
+		p.add(currentRoomComboBox);
+		
+		
+		getContentPane().add(p, BorderLayout.CENTER);
+		
 		JButton addButton = new JButton("Melduj");
 		addButton.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent ev) {
@@ -72,10 +120,7 @@ public class PersonnelGui extends JFrame  {
 		} );
 		
 		setResizable(false);
-		
-		
-		updateStatus();
-	}
+        }
 	
 	private void updateStatus() {
 		
@@ -83,7 +128,7 @@ public class PersonnelGui extends JFrame  {
 			currentStatusLabel.setText("Wolny");
 		}
 		else {
-			currentStatusLabel.setText("Zaj�ty");
+			currentStatusLabel.setText("Zajety");
 		}
 			
 	}
