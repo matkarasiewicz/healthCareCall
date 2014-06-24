@@ -33,21 +33,21 @@ public class PatientGui extends JFrame {
 		p.setLayout(new GridLayout(2, 2));
 		
 		String[] list = {
-				"Doktor",
-				"Pielêgniarka",			
+				"DOCTOR",
+				"NURSE",			
 		};
 		
 		p.add(new JLabel("Typ pomocy:"));
 		helpKindComboBox = new JComboBox(list);
 		p.add(helpKindComboBox);
 		
-		p.add(new JLabel("Wiadomoœæ:"));
+		p.add(new JLabel("Wiadomoï¿½ï¿½:"));
 		helpMessageField = new JTextField(15);
 		p.add(helpMessageField);
 		
 		getContentPane().add(p, BorderLayout.CENTER);
 		
-		JButton addButton = new JButton("Wyœlij");
+		JButton addButton = new JButton("Wyï¿½lij");
 		addButton.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent ev) {
 				try {
@@ -55,11 +55,11 @@ public class PatientGui extends JFrame {
 					String helpKind = helpKindComboBox.getSelectedItem().toString();
 					
 					
-					myAgent.sendHelpRequest(helpKind, helpMessage);
+					myAgent.sendHelpRequest(PersonnelAgent.Type.valueOf(helpKind), helpMessage);
 					helpMessageField.setText("");
 				}
 				catch (Exception e) {
-					JOptionPane.showMessageDialog(PatientGui.this, "Nieprawid³owe wartoœci. " + e.getMessage(), "B³¹d", JOptionPane.ERROR_MESSAGE); 
+					JOptionPane.showMessageDialog(PatientGui.this, "Nieprawidï¿½owe wartoï¿½ci. " + e.getMessage(), "Bï¿½ï¿½d", JOptionPane.ERROR_MESSAGE); 
 				}
 			}
 		} );

@@ -36,7 +36,7 @@ public class PersonnelGui extends JFrame  {
 		
 		String[] list = HospitalMap.getRooms();
 		
-		p.add(new JLabel("Pokój"));
+		p.add(new JLabel("Pokoj"));
 		currentRoomComboBox = new JComboBox(list);
 		p.add(currentRoomComboBox);
 		
@@ -53,7 +53,7 @@ public class PersonnelGui extends JFrame  {
 					//myAgent.sendHelpRequest(helpKind, "");
 				}
 				catch (Exception e) {
-					JOptionPane.showMessageDialog(PersonnelGui.this, "Nieprawid³owe wartoœci. " + e.getMessage(), "B³¹d", JOptionPane.ERROR_MESSAGE); 
+					JOptionPane.showMessageDialog(PersonnelGui.this, "Nieprawidï¿½owe wartoï¿½ci. " + e.getMessage(), "Bï¿½ï¿½d", JOptionPane.ERROR_MESSAGE); 
 				}
 			}
 		} );
@@ -83,7 +83,7 @@ public class PersonnelGui extends JFrame  {
 			currentStatusLabel.setText("Wolny");
 		}
 		else {
-			currentStatusLabel.setText("Zajêty");
+			currentStatusLabel.setText("Zajï¿½ty");
 		}
 			
 	}
