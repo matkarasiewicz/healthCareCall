@@ -41,13 +41,13 @@ public class PatientGui extends JFrame {
 		helpKindComboBox = new JComboBox(list);
 		p.add(helpKindComboBox);
 		
-		p.add(new JLabel("Wiadomo��:"));
+		p.add(new JLabel("Wiadomosc:"));
 		helpMessageField = new JTextField(15);
 		p.add(helpMessageField);
 		
 		getContentPane().add(p, BorderLayout.CENTER);
 		
-		JButton addButton = new JButton("Wy�lij");
+		JButton addButton = new JButton("Wyslij");
 		addButton.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent ev) {
 				try {
@@ -59,7 +59,7 @@ public class PatientGui extends JFrame {
 					helpMessageField.setText("");
 				}
 				catch (Exception e) {
-					JOptionPane.showMessageDialog(PatientGui.this, "Nieprawid�owe warto�ci. " + e.getMessage(), "B��d", JOptionPane.ERROR_MESSAGE); 
+					JOptionPane.showMessageDialog(PatientGui.this, "Nieprawidlowe wartosci. " + e.getMessage(), "B��d", JOptionPane.ERROR_MESSAGE); 
 				}
 			}
 		} );

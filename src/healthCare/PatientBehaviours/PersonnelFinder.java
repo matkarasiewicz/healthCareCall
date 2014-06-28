@@ -10,6 +10,7 @@ import jade.core.AID;
 import jade.core.behaviours.TickerBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
+import jade.domain.FIPAAgentManagement.SearchConstraints;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
 
@@ -45,9 +46,13 @@ public class PersonnelFinder extends TickerBehaviour {
             ServiceDescription sd = new ServiceDescription();
             sd.setType("help-service");
             template.addServices(sd);
+            
             template.addOntologies(personnelType.toString());
             try {
-                DFAgentDescription[] result = DFService.search(patientAgent, template);
+                
+		SearchConstraints ALL = new SearchConstraints();
+		ALL.setMaxResults(new Long(-1));
+                DFAgentDescription[] result = DFService.search(patientAgent, template, ALL);
                 if(result.length > 0) {
                 System.out.println("Znaleziono personel:");
                 personnelAgents = new AID[result.length];

@@ -34,6 +34,7 @@ public class HelpAnswerReceiver extends CyclicBehaviour {
 
             } else {
                 patientAgent.resendHelpRequest();
+                String asd = reply.getSender().getLocalName();
                 if(reply.getSender().getLocalName() == "ams") {
                     System.out.println(patientAgent.getLocalName() + "zmarl");
                     patientAgent.doDelete();

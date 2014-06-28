@@ -25,7 +25,7 @@ public class AcceptHelp extends CyclicBehaviour {
         if (msg != null) {
             String room = msg.getContent();
             ACLMessage reply = msg.createReply();
-            if (personnelAgent.getStatus() == PersonnelAgent.State.FREE) {
+            if (personnelAgent.getStatus() == PersonnelAgent.State.FREE && personnelAgent.askToAcceptHelp(msg.getSender().getLocalName())== true) {
                 personnelAgent.helpPatient();
                 reply.setPerformative(ACLMessage.INFORM);
                 System.out.println(personnelAgent.getLocalName() + " pomaga " + msg.getSender().getLocalName() + " w pokoju " + room);

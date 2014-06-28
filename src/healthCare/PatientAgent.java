@@ -91,7 +91,16 @@ public class PatientAgent extends Agent {
         Object[] args = getArguments();
 
         if (args != null && args.length > 0) {
-            roomName = args[0].toString();
+            
+            if(HospitalMap.map.containsKey(args[0].toString()))
+            {
+                roomName = args[0].toString();
+            } else {
+                roomName = "Pokoj 101";
+            }
+            
+        } else {
+            roomName = "Pokoj 101";
         }
 
     }
